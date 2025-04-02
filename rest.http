@@ -1,2 +1,27 @@
-@rooturl:http://localhost:9001/api/v1
-clear
+@rooturl=http://localhost:9004/api/v1
+
+### auth end point
+@authEP={{rooturl}}/auth
+
+###get 
+GET {{authEP}}
+ 
+###
+POST {{authEP}}/register
+Content-Type: application/json
+
+{
+  "fName": "john",
+  "lName":"Doe",
+  "email":"johon@gmail.com",
+  "phone":"1234567",
+  "password":"password"
+}
+###
+POST {{authEP}}/login
+Content-Type:application/json
+
+ {
+    "email":"joh",
+    "password":"password"
+ }
