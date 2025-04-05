@@ -29,3 +29,25 @@ export const register = async (req, res, next) => {
     });
   }
 };
+
+export const login = (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    console.log("email is:", email);
+    console.log("passworrd is", password);
+
+    //retrive user by email
+    const userData = getUserByEmail(email);
+    console.log("userData is", userData);
+  } catch (error) {
+    console.log("error is", error);
+    next({
+      statusCode: 500,
+      message: "login error", //error?.message
+    });
+    // return res.status(500).json({
+    //   status: "error",
+    //   message: "login error.",
+    // });
+  }
+};

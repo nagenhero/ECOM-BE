@@ -3,7 +3,7 @@ import {
   loginValidator,
   registerValidator,
 } from "../middlewares/joiValidation.js";
-import { register } from "../controllers/authController.js";
+import { login, register } from "../controllers/authController.js";
 
 const router = express.Router(); //for routing
 //register api
@@ -18,4 +18,4 @@ router.post("/register", registerValidator, register);
 export default router;
 
 //login user
-router.post("/login", loginValidator), login;
+router.post("/login", loginValidator, login);

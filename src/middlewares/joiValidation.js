@@ -30,11 +30,11 @@ export const registerValidator = (req, res, next) => {
 };
 
 //login validator
-export const loginValidator = (req, res, net) => {
+export const loginValidator = (req, res, next) => {
   // const loginSchema=Joi.object({})
   const loginSchema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2 }).required(),
     password: Joi.string().required(),
   });
-  joiValidator(loginSchema, req, res);
+  joiValidator(loginSchema, req, res, next);
 };
