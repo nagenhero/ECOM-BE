@@ -8,7 +8,9 @@ const joiValidator = (schema, req, res, next) => {
         message: error.message, // joi validation error message
         //for example:email not valid
       })
-    : next(); //  If no error, pass control to the next middleware or route   // no need to pass req, res to next here
+    : next();
+
+  //  If no error, pass control to the next middleware or route   // no need to pass req, res to next here
 
   // : res.send({
   //     message: "your are good",

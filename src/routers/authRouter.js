@@ -18,4 +18,4 @@ router.post("/register", registerValidator, register);
 export default router;
 
 //login user
-router.post("/login", loginValidator);
+router.post("/login", loginValidator), login;
