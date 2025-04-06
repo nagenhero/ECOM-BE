@@ -22,6 +22,6 @@ POST {{authEP}}/login
 Content-Type:application/json
 
  {
-    "email":"joh@gmail.com",
+    "email":"john@gmail.com",
     "password":"password"
  }

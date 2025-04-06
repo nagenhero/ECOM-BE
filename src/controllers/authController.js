@@ -1,5 +1,11 @@
-import { createNewUser } from "../models/userModel.js";
-import { encryptText } from "../utils/bcrypt.js";
+import { json } from "express";
+import {
+  createNewUser,
+  getUserByEmail,
+  updateUser,
+} from "../models/users/userModel.js";
+import { compareText, encryptText } from "../utils/bcrypt.js";
+import { jwtSign, refreshJwtSign } from "../utils/jwt.js";
 
 export const register = async (req, res, next) => {
   try {
@@ -30,15 +36,58 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     console.log("email is:", email);
     console.log("passworrd is", password);
 
     //retrive user by email
-    const userData = getUserByEmail(email);
-    console.log("userData is", userData);
+    const userData = await getUserByEmail(email);
+    if (!userData) {
+      return (
+        res.status(404),
+        json({
+          status: "error",
+          message: "user not found in database",
+        })
+      );
+    }
+    //check hashed password of db and req body password
+    const isPasswordValid = compareText(password, userData.password);
+    if (isPasswordValid) {
+      //create JWT
+      const tokenData = { email: userData.email };
+      const token = jwtSign(tokenData);
+      const refreshToken = refreshJwtSign(tokenData);
+      console.log("Refreshtoken is", refreshToken);
+      // save the refresh Token in the userData
+      const data = await updateUser(
+        { email: userData.email },
+        { refreshJWT: refreshToken }
+      );
+      // remove sensitve userData
+      userData.refreshJWT = "";
+      userData.password = "";
+      return res.status(200).json({
+        status: "success",
+        message: "Login successfull",
+        accessToken: token,
+        refreshToken: refreshToken,
+        user: userData,
+      });
+    } else {
+      next({
+        statusCode: 403,
+        message: "Creditenals not matched",
+      });
+      // return res.status(403).json({
+      //   status: "Error",
+      //   message: "Credintails not matched",
+      // });
+    }
+
+    // console.log("userData is", userData);
   } catch (error) {
     console.log("error is", error);
     next({
