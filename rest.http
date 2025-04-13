@@ -1,2 +1,29 @@
-@rooturl:http://localhost:9001/api/v1
-clear
+@rooturl=http://localhost:9004/api/v1
+
+### auth end point
+@authEP={{rooturl}}/auth
+Authorization: 
+
+###get 
+GET {{authEP}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTA2MTUyLCJleHAiOjE3NDQ1OTI1NTJ9.Z2Gn6S7cEFhkwvOndNLigHHK_PVomFWrn5PoOb0Rmlk
+ 
+###
+POST {{authEP}}/register
+Content-Type: application/json
+
+{
+  "fName": "john",
+  "lName":"Doe",
+  "email":"johon@gmail.com",
+  "phone":"1234567",
+  "password":"password"
+}
+###
+POST {{authEP}}/login
+Content-Type:application/json
+
+ {
+    "email":"john@gmail.com",
+    "password":"password"
+ }
