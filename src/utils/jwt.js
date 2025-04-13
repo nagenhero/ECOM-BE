@@ -14,3 +14,11 @@ export const refreshJwtSign = (signData) => {
   });
   return token;
 };
+//verify token
+export const jwtVerify = async (token) => {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    console.error("JWT cannot be verified", error.message);
+  }
+};

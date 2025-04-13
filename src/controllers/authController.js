@@ -100,3 +100,14 @@ export const login = async (req, res, next) => {
     // });
   }
 };
+
+//get user details
+export const getUserDetails = async (req, res, next) => {
+  req.userData.password = "";
+  req.userData.refreshJWT = "";
+  return res.json({
+    status: "success",
+    message: "successfully user  data is fetched",
+    user: req.userData,
+  });
+};

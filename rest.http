@@ -2,9 +2,11 @@
 
 ### auth end point
 @authEP={{rooturl}}/auth
+Authorization: 
 
 ###get 
 GET {{authEP}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTA2MTUyLCJleHAiOjE3NDQ1OTI1NTJ9.Z2Gn6S7cEFhkwvOndNLigHHK_PVomFWrn5PoOb0Rmlk
  
 ###
 POST {{authEP}}/register
