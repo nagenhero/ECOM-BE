@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import categoriesRouter from "./src/routers/categoriesRouter.js";
 import connectMongoDB from "./src/config/mongoConfig.js";
 
 // Load environment variables from .env file
@@ -37,6 +38,8 @@ app.get("/", (req, res, next) => {
 // });
 //auth route
 app.use("/api/v1/auth", authRouter);
+//categories route
+app.use("/api/v1/categories", categoriesRouter);
 //error handler middleware
 app.use(errorHandler);
 

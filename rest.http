@@ -2,13 +2,18 @@
 
 ### auth end point
 @authEP={{rooturl}}/auth
-Authorization: 
 
-###get 
+### Category end point
+@categoryEP={{rooturl}}/categories
+
+### product end point url
+@productEP= {{rooturl}}/products
+
+###get customer
 GET {{authEP}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTA2MTUyLCJleHAiOjE3NDQ1OTI1NTJ9.Z2Gn6S7cEFhkwvOndNLigHHK_PVomFWrn5PoOb0Rmlk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
  
-###
+### register new customer
 POST {{authEP}}/register
 Content-Type: application/json
 
@@ -19,7 +24,7 @@ Content-Type: application/json
   "phone":"1234567",
   "password":"password"
 }
-###
+### login
 POST {{authEP}}/login
 Content-Type:application/json
 
@@ -27,3 +32,32 @@ Content-Type:application/json
     "email":"john@gmail.com",
     "password":"password"
  }
+###
+POST {{categoryEP}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
+Content-Type:application/json
+
+{
+    "name":"nike",
+    "adminId":"67ebb5578dcc2cfd5f4a52e3"
+   
+ }
+
+### create a product
+POST {{productEP}}
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
+{
+"name" : "nike airmax 2025",
+"description" : "launched at 2025 july",
+"price": 200,
+"stock":10,
+"category":"67fcb388360b953b79588f42",
+"thumbnail" : "https://wallpapercave.com/wp/rdYAno5.jpg",
+"averageRating" : 0,
+"reviews":"review id"
+
+}
+
+ 
+ 

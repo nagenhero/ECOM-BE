@@ -64,3 +64,12 @@ export const authenticate = async (req, res, next) => {
     });
   }
 };
+
+export const isadmin = async (req, res, next) => {
+  req.userData.role == "admin"
+    ? next()
+    : next({
+        statusCode: 403,
+        message: "Not authorized .Must be admin ",
+      });
+};

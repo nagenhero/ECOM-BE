@@ -1,4 +1,5 @@
 import Joi from "joi";
+
 const joiValidator = (schema, req, res, next) => {
   const { error } = schema.validate(req.body);
   console.log("the error is:", error);
@@ -37,4 +38,12 @@ export const loginValidator = (req, res, next) => {
     password: Joi.string().required(),
   });
   joiValidator(loginSchema, req, res, next);
+};
+//categories validator
+export const createCategoriesValidator = (req, res, next) => {
+  const createCategoriesSchema = Joi.object({
+    name: Joi.string().required(),
+    adminId: Joi.string(),
+  });
+  joiValidator(createCategoriesSchema, req, res, next);
 };

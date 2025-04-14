@@ -19,10 +19,15 @@ router.get("/register", (req, res) => {
 
 //1.to register user
 router.post("/register", registerValidator, register);
-export default router;
 
 //2.login user
 router.post("/login", loginValidator, login);
+// router.post("/login", (req, res) => {
+//   res.send({
+//     message: "this is the  loginapi",
+//   });
+// });
 
 //3.get logged in user data
 router.get("/", authenticate, getUserDetails);
+export default router;
