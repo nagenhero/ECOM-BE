@@ -18,7 +18,7 @@ import { userActivationUrlEmail } from "../services/emailService.js";
 export const register = async (req, res, next) => {
   try {
     console.log("requested body is", req.body);
-    const { fName, lName, email, phone } = req.body;
+    const { fName, lName, email, phone, thumbnail } = req.body;
     let { password } = req.body;
     password = await encryptText(password);
     //creating or regitering use ti database
@@ -28,6 +28,7 @@ export const register = async (req, res, next) => {
       email,
       password,
       phone,
+      thumbnail,
     });
     if (data?._id) {
       const sessions = await insertToken({
@@ -98,12 +99,12 @@ export const login = async (req, res, next) => {
       );
     }
     //check hashed password of db and req body password
-    const isPasswordValid = compareText(password, userData.password);
+    const isPasswordValid = await compareText(password, userData.password);
     if (isPasswordValid) {
       //create JWT
       const tokenData = { email: userData.email };
-      const { token, associate } = jwtSign(tokenData);
-      const refreshToken = refreshJwtSign(tokenData);
+      const { token, associate } = await jwtSign(tokenData);
+      const refreshToken = await refreshJwtSign(tokenData);
       console.log("Refreshtoken is", refreshToken);
       // save the refresh Token in the userData
       const data = await updateUser(
@@ -165,7 +166,7 @@ export const getAdminAllCustomers = async (req, res, next) => {
       return res.json({
         status: "success",
         message: "All customers found and fetched successfully",
-        csutomers: customer,
+        customers: customer,
       });
     } else {
       next({

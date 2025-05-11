@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    thumbnail: {
+      type: String,
+      required: true,
+    },
     verified: {
       type: Boolean,
       default: false,

@@ -21,17 +21,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbS42NzFAZ21h
 ###
 
 GET {{authEP}}/all-customers
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
-### register new customer
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2OTU3MTQ1LCJleHAiOjE3NDcxMjk5NDV9.ClO5nJVVUV3XBrNQrSzHPHcAOx0lSWEvaaQe-p2o9ps
+###
 POST {{authEP}}/register
 Content-Type: application/json
 
 {
-  "fName": "sam",
-  "lName":"Doe",
-  "email":"nags.671@gmail.com",
+  "fName": "kiran",
+  "lName":"almichane",
+  "email":"sss@gmail.com",
   "phone":"1234567",
-  "password":"password"
+  "password":"password",
+  "thumbnail":"https://images.unsplash.com/photo-1656771793175-ba3fce94106a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }
 ### login
 POST {{authEP}}/login
@@ -54,10 +55,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwu
 ### create a product
 POST {{productEP}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2OTY2MDQyLCJleHAiOjE3NDcxMzg4NDJ9.aR-YLk0vurYE75sih37gBO0wDKfD1N5Fo82arUG7rQw
 
 {
-"name" : "nikehordan 111",
+"name" : "niked 111",
 "description" : "launched at 200 july",
 "price": 220,
   "sizes": ["S", "M", "L", "XL"],
@@ -66,16 +67,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwu
 
 "stock":10,
 "category":"67fcb388360b953b79588f42",
-"thumbnail" : "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/46630a30-4ded-48cb-ad8d-e7d018b7ea7d/KB+U+NK+DF+FUND+6IN+SHORT.png",
+"thumbnail" : "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e3a103c4-e874-4a24-81d3-62b6f3fa58ca/NIKE+VOMERO+18.png",
 "averageRating" : 0,
 "reviews":"67fcb388360b953b79588f44"
 }
 ### get all products 
 GET {{productEP}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
-
-DELETE {{productEP}}/67fcdf04585d5325f1f2200c
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
+###
+DELETE {{productEP}}/6808c43051135bf6fef371c6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2OTY2MDQyLCJleHAiOjE3NDcxMzg4NDJ9.aR-YLk0vurYE75sih37gBO0wDKfD1N5Fo82arUG7rQw
 
 ###update product
 PUT {{productEP}}/67fcf47edf61461f534041cb
