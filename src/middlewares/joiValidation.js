@@ -47,3 +47,38 @@ export const createCategoriesValidator = (req, res, next) => {
   });
   joiValidator(createCategoriesSchema, req, res, next);
 };
+// create product validator
+export const createProductValidator = (req, res, next) => {
+  // Define the Joi validation schema for sizes
+  // const sizesSchema = Joi.alternatives().try(
+  //   Joi.string().valid("XS", "S", "M", "L", "XL"), // Single size validation
+  //   Joi.array().items(Joi.string().valid("XS", "S", "M", "L", "XL")) // Array of sizes validation
+  // );
+
+  const productSchema = Joi.object({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    price: Joi.number().required(),
+    // sizes: sizesSchema.required(),
+    stock: Joi.number().required(),
+    thumbnail: Joi.string().required(),
+    averageRating: Joi.number().required(),
+    category: Joi.string().length(24).hex().required(),
+    reviews: Joi.string().length(24).hex().required(),
+  }).unknown();
+  joiValidator(productSchema, req, res, next);
+};
+
+export const updateProductValidator = (req, res, next) => {
+  const updateProductSchema = Joi.object({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    price: Joi.number().required(),
+    stock: Joi.number().required(),
+    thumbnail: Joi.string().required(),
+    averageRating: Joi.number().required(),
+    category: Joi.string().length(24).hex().required(),
+    reviews: Joi.string().length(24).hex().required(),
+  });
+  joiValidator(updateProductSchema, req, res, next);
+};

@@ -11,16 +11,25 @@
 
 ###get customer
 GET {{authEP}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
- 
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbS42NzFAZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3Njk3LCJleHAiOjE3NDcwNjA0OTd9.qd3u5m8a_359yGEV9rywWrunaQVoq-CjPO0B9eoxNgo
+
+###
+
+GET {{authEP}}/renew-jwt
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbS42NzFAZ21haWwuY29tIiwiaWF0IjoxNzQ2NTQzMTk3LCJleHAiOjE3NDc4MzkxOTd9.F2BV9mg4inas7dTmTNTDHpzPWrlR5FKpDxQ-S1SlLzY
+
+###
+
+GET {{authEP}}/all-customers
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
 ### register new customer
 POST {{authEP}}/register
 Content-Type: application/json
 
 {
-  "fName": "john",
+  "fName": "sam",
   "lName":"Doe",
-  "email":"johon@gmail.com",
+  "email":"nags.671@gmail.com",
   "phone":"1234567",
   "password":"password"
 }
@@ -34,8 +43,7 @@ Content-Type:application/json
  }
 ###
 POST {{categoryEP}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
-Content-Type:application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ1MjM5ODcyLCJleHAiOjE3NDUzMjYyNzJ9.976IkDPL6QC-bCY2x2Q1NSfofYv9x0Fbnv50CcftSRo
 
 {
     "name":"nike",
@@ -46,18 +54,44 @@ Content-Type:application/json
 ### create a product
 POST {{productEP}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
+
 {
-"name" : "nike airmax 2025",
-"description" : "launched at 2025 july",
-"price": 200,
+"name" : "nikehordan 111",
+"description" : "launched at 200 july",
+"price": 220,
+  "sizes": ["S", "M", "L", "XL"],
+  "imageLists": ["https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto","https://cdn.static.amplience.net/jpl/_vid/jd_728017_vid/02b2a23e-077b-4a42-98dc-5cbb1219e46e/video/eecc0f81-e73b-4c9c-bc63-c281f044d859.mp4", "https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto", "https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto",
+  "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c3191074-4ea8-494e-bd5f-e75c0357219a/AIR+JORDAN+1+LOW+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png"],
+
 "stock":10,
+"category":"67fcb388360b953b79588f42",
+"thumbnail" : "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/46630a30-4ded-48cb-ad8d-e7d018b7ea7d/KB+U+NK+DF+FUND+6IN+SHORT.png",
+"averageRating" : 0,
+"reviews":"67fcb388360b953b79588f44"
+}
+### get all products 
+GET {{productEP}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2ODg3ODEzLCJleHAiOjE3NDcwNjA2MTN9.afxzURwQZt2Yd1WlCrGQD7Lt6LLwhC6sV3cccBwTjuM
+
+DELETE {{productEP}}/67fcdf04585d5325f1f2200c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ0NTk4NzE1LCJleHAiOjE3NDQ2ODUxMTV9.q320GCrL9uSbAq028iTc0CxmQsQgtYev3qBVsz0RKMc
+
+###update product
+PUT {{productEP}}/67fcf47edf61461f534041cb
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ1NDAyMzcwLCJleHAiOjE3NDU0ODg3NzB9.gxrnVAcxTJ4ZKQcikO2MoY8wDoNzzmd63pJA918lt1U
+Content-Type:application/json
+
+{
+"name" : "nike airmin 2099",
+"description" : "launched at 2022 july",
+"price": 100,
+
+"stock":0,
 "category":"67fcb388360b953b79588f42",
 "thumbnail" : "https://wallpapercave.com/wp/rdYAno5.jpg",
 "averageRating" : 0,
-"reviews":"review id"
-
+"reviews":"67fcb388360b953b79588f44"
 }
 
- 
  

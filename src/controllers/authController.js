@@ -1,11 +1,19 @@
 import { json } from "express";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   createNewUser,
+  getAllCustomers,
   getUserByEmail,
   updateUser,
 } from "../models/users/userModel.js";
 import { compareText, encryptText } from "../utils/bcrypt.js";
 import { jwtSign, refreshJwtSign } from "../utils/jwt.js";
+import {
+  deleteManySessions,
+  insertToken,
+} from "../models/sessions/sessionModel.js";
+import { userActivationUrlEmail } from "../services/emailService.js";
 
 export const register = async (req, res, next) => {
   try {
@@ -21,11 +29,47 @@ export const register = async (req, res, next) => {
       password,
       phone,
     });
-    return res.status(201).json({
-      status: "success",
-      message: "user created",
-      data,
-    });
+    if (data?._id) {
+      const sessions = await insertToken({
+        token: uuidv4(),
+        associate: data.email,
+      });
+
+      if (sessions?._id) {
+        // Create activation URL using email (for demo/MVP purposes)
+        const activationUrl =
+          "http//:localhost:9004?sessionId=" +
+          sessions._id +
+          "&t=" +
+          sessions.token;
+        console.log("action url");
+
+        // "
+
+        // Send activation email
+        // const transporter = emailTransporter();
+        const mailOptions = userActivationUrlEmail({
+          email,
+          name: `${fName} ${lName}`,
+          url: activationUrl,
+        });
+        // await transporter.sendMail(mailOptions);
+        if (mailOptions) {
+          return res.status(201).json({
+            status: "success",
+            message: "User created. Check your email to activate your account.",
+            data,
+          });
+        } else {
+          console.log("you got error in etheral man");
+        }
+      }
+    }
+    // return res.status(201).json({
+    //   status: "success",
+    //   message: "user created",
+    //   data,
+    // });
     console.log("encrypted password is", password);
   } catch (error) {
     console.log(error);
@@ -58,7 +102,7 @@ export const login = async (req, res, next) => {
     if (isPasswordValid) {
       //create JWT
       const tokenData = { email: userData.email };
-      const token = jwtSign(tokenData);
+      const { token, associate } = jwtSign(tokenData);
       const refreshToken = refreshJwtSign(tokenData);
       console.log("Refreshtoken is", refreshToken);
       // save the refresh Token in the userData
@@ -73,6 +117,7 @@ export const login = async (req, res, next) => {
         status: "success",
         message: "Login successfull",
         accessToken: token,
+        associate: associate,
         refreshToken: refreshToken,
         user: userData,
       });
@@ -110,4 +155,59 @@ export const getUserDetails = async (req, res, next) => {
     message: "successfully user  data is fetched",
     user: req.userData,
   });
+};
+
+export const getAdminAllCustomers = async (req, res, next) => {
+  try {
+    const customer = await getAllCustomers();
+    console.log("all customers are:", customer);
+    if (customer) {
+      return res.json({
+        status: "success",
+        message: "All customers found and fetched successfully",
+        csutomers: customer,
+      });
+    } else {
+      next({
+        statusCode: 500,
+        message: "Error ! No products found",
+      });
+    }
+  } catch (error) {
+    next({
+      statusCode: 500,
+      message: `error getting all books--->${error.message}`,
+    });
+  }
+};
+
+//renew jwt
+export const renewJWT = async (req, res, next) => {
+  // recreate the access Token
+
+  const tokenData = {
+    email: req.userData.email,
+  };
+
+  const { token, email } = await jwtSign(tokenData);
+  console.log("token 1st", token);
+
+  return res.status(200).json({
+    status: "success",
+    message: "Token Refreshed",
+    accessToken: token,
+    association: email,
+  });
+};
+
+export const logoutUser = async (req, res, next) => {
+  try {
+    //get token
+    const { email } = req.userData;
+    //update refreshJWT TO "'"
+    await updateUser({ email }, { refreshJWT: "" });
+
+    //remove the accessJWT Ffrom session table
+    await deleteManySessions({ associate: email });
+  } catch (error) {}
 };

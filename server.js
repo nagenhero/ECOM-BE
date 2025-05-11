@@ -10,6 +10,7 @@ dotenv.config();
 import authRouter from "./src/routers/authRouter.js";
 import { connect } from "mongoose";
 import { errorHandler } from "./src/middlewares/errorHandler.js";
+import productRouter from "./src/routers/productRouter.js";
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -40,6 +41,9 @@ app.get("/", (req, res, next) => {
 app.use("/api/v1/auth", authRouter);
 //categories route
 app.use("/api/v1/categories", categoriesRouter);
+
+//product route
+app.use("/api/v1/products", productRouter);
 //error handler middleware
 app.use(errorHandler);
 
