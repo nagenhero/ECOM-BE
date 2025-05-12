@@ -16,3 +16,22 @@ export const userActivationUrlEmailTemplate = ({ email, name, url }) => {
   `,
   };
 };
+
+export const WelcomeEmailTemplate = ({ email, name, url }) => {
+  return {
+    from: `"SNSS ECOMMERCE" <${process.env.SMTP_EMAIL}>`,
+    to: email,
+    subject: "thankyou for registration",
+    text: `hello ${name} thanks for registration
+    ${url}`, // plain‑text body
+    html: `
+    <p>Hello ${name},</p>
+    <br/>
+    
+  
+   <button style="background: green; color:white; padding:2rem">
+    thanks</button>
+  
+  `,
+  };
+};

@@ -10,6 +10,7 @@ import {
   logoutUser,
   register,
   renewJWT,
+  verifyUser,
 } from "../controllers/authController.js";
 import {
   authenticate,
@@ -42,5 +43,8 @@ router.get("/all-customers", authenticate, isadmin, getAdminAllCustomers);
 
 // 4.renew jwt
 router.get("/renew-jwt", refreshAuthenticate, renewJWT);
+
+router.post("/verify-user", verifyUser);
+
 router.get("/logout", authenticate, logoutUser);
 export default router;

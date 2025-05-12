@@ -1,5 +1,6 @@
 import { json } from "express";
 import { v4 as uuidv4 } from "uuid";
+const FrontEP = process.env.VITE_ROOT_URL_FE;
 
 import {
   createNewUser,
@@ -11,14 +12,20 @@ import { compareText, encryptText } from "../utils/bcrypt.js";
 import { jwtSign, refreshJwtSign } from "../utils/jwt.js";
 import {
   deleteManySessions,
+  findToken,
   insertToken,
 } from "../models/sessions/sessionModel.js";
-import { userActivationUrlEmail } from "../services/emailService.js";
+import {
+  userActivationUrlEmail,
+  WelcomeUrlEmail,
+} from "../services/emailService.js";
 
 export const register = async (req, res, next) => {
   try {
     console.log("requested body is", req.body);
     const { fName, lName, email, phone, thumbnail } = req.body;
+    console.log("defualt thumbani", thumbnail);
+
     let { password } = req.body;
     password = await encryptText(password);
     //creating or regitering use ti database
@@ -38,11 +45,14 @@ export const register = async (req, res, next) => {
 
       if (sessions?._id) {
         // Create activation URL using email (for demo/MVP purposes)
-        const activationUrl =
-          "http//:localhost:9004?sessionId=" +
-          sessions._id +
-          "&t=" +
-          sessions.token;
+        // const activationUrl =
+        //   "http://localhost:5174/verify-user?sessionId=" +
+        //   sessions._id +
+        //   "&t=" +
+        //   sessions.token;
+
+        const activationUrl = `${FrontEP}/verify-user?sessionId=${sessions._id}&t=${sessions.token}`;
+
         console.log("action url");
 
         // "
@@ -89,15 +99,23 @@ export const login = async (req, res, next) => {
 
     //retrive user by email
     const userData = await getUserByEmail(email);
+    console.log("userdata details are", userData.verified);
+
     if (!userData) {
-      return (
-        res.status(404),
-        json({
-          status: "error",
-          message: "user not found in database",
-        })
-      );
+      return res.status(404).json({
+        status: "error",
+        message: "user not found in database",
+      });
     }
+    if (userData.verified === false) {
+      console.log("this must be false");
+
+      return res.status(404).json({
+        status: "error",
+        message: "Unauthorised user !!!!! User is not verified",
+      });
+    }
+
     //check hashed password of db and req body password
     const isPasswordValid = await compareText(password, userData.password);
     if (isPasswordValid) {
@@ -211,4 +229,58 @@ export const logoutUser = async (req, res, next) => {
     //remove the accessJWT Ffrom session table
     await deleteManySessions({ associate: email });
   } catch (error) {}
+};
+
+export const verifyUser = async (req, res, next) => {
+  // session id
+  // token
+  // search the session using id
+  // check if token == session.token from db
+  // verify and decode token
+  // get email from decoded token
+  // if everything is okay, get the user from the decoded email
+  // change the value of verified to true in the user
+
+  // get request token and session
+
+  const { sessionId, token } = req.query;
+
+  // find sessionID from db
+  // check if token is correct
+  // get the email from associate
+  // find the user
+  // change the verified to true
+
+  const session = await findToken(token);
+  if (session?._id == sessionId) {
+    const user = await getUserByEmail(session.associate);
+
+    if (user?._id) {
+      await updateUser({ email: user.email }, { verified: true });
+      const mailOption = WelcomeUrlEmail({
+        email: user.email,
+        name: "sss",
+        url: "",
+      });
+      // await transporter.sendMail(mailOptions);
+      if (mailOption) {
+        return res.status(201).json({
+          status: "success",
+          message: "RESPONSE ,ESAGE THANYOU FOR REGISTRATION.",
+        });
+      } else {
+        console.log("you got error in etheral man");
+      }
+
+      return res.send({
+        status: "success",
+        message: "user verified",
+      });
+    }
+  }
+
+  return res.send({
+    status: "error",
+    message: "Some error",
+  });
 };
