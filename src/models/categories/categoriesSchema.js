@@ -8,10 +8,6 @@ const categoriesSchema = new mongoose.Schema(
       index: 1,
       required: true,
     },
-    adminId: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-    },
   },
   { timestamps: true }
 );

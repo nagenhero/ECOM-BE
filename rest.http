@@ -44,18 +44,18 @@ Content-Type:application/json
  }
 ###
 POST {{categoryEP}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ1MjM5ODcyLCJleHAiOjE3NDUzMjYyNzJ9.976IkDPL6QC-bCY2x2Q1NSfofYv9x0Fbnv50CcftSRo
+Content-Type:application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MTA3ODQ0LCJleHAiOjE3NDcyODA2NDR9.WVjunz-cMZ0-eJiQgHH2BxlWD4VJv5v8S4x2vw91xGk
 
 {
-    "name":"nike",
-    "adminId":"67ebb5578dcc2cfd5f4a52e3"
-   
- }
+  "name":"Kids"
+}
+
 
 ### create a product
 POST {{productEP}}
 Content-Type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ2OTY2MDQyLCJleHAiOjE3NDcxMzg4NDJ9.aR-YLk0vurYE75sih37gBO0wDKfD1N5Fo82arUG7rQw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MTA3ODQ0LCJleHAiOjE3NDcyODA2NDR9.WVjunz-cMZ0-eJiQgHH2BxlWD4VJv5v8S4x2vw91xGk
 
 {
 "name" : "niked 111",
@@ -66,7 +66,7 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWw
   "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c3191074-4ea8-494e-bd5f-e75c0357219a/AIR+JORDAN+1+LOW+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png"],
 
 "stock":10,
-"category":"67fcb388360b953b79588f42",
+"category":"6822c01ff01f27e0adae289d",
 "thumbnail" : "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e3a103c4-e874-4a24-81d3-62b6f3fa58ca/NIKE+VOMERO+18.png",
 "averageRating" : 0,
 "reviews":"67fcb388360b953b79588f44"

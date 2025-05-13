@@ -44,7 +44,6 @@ export const loginValidator = (req, res, next) => {
 export const createCategoriesValidator = (req, res, next) => {
   const createCategoriesSchema = Joi.object({
     name: Joi.string().required(),
-    adminId: Joi.string(),
   });
   joiValidator(createCategoriesSchema, req, res, next);
 };

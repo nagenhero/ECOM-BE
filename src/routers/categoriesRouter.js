@@ -11,6 +11,7 @@ router.post(
   createCategoriesValidator,
   createCategories
 );
+
 // router.post("/", (req, res) => {
 //   res.send({
 //     message: "this is the categories api",
