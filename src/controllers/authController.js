@@ -266,7 +266,7 @@ export const verifyUser = async (req, res, next) => {
       if (mailOption) {
         return res.status(201).json({
           status: "success",
-          message: "RESPONSE ,ESAGE THANYOU FOR REGISTRATION.",
+          message: `THANYOU FOR REGISTRATION. your${user.email} has been succesfully registered`,
         });
       } else {
         console.log("you got error in etheral man");

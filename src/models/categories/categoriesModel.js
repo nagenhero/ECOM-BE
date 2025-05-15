@@ -3,3 +3,8 @@ import CategoriesSchema from "./categoriesSchema.js";
 export const insertCategories = (catObj) => {
   return CategoriesSchema(catObj).save();
 };
+
+//get all categopries
+export const getAllCategories = (filterdObj) => {
+  return CategoriesSchema.find(filterdObj);
+};

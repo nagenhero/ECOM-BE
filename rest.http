@@ -6,6 +6,8 @@
 ### Category end point
 @categoryEP={{rooturl}}/categories
 
+@subCategoryEP={{rooturl}}/subCategories
+
 ### product end point url
 @productEP= {{rooturl}}/products
 
@@ -45,29 +47,51 @@ Content-Type:application/json
 ###
 POST {{categoryEP}}
 Content-Type:application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MTA3ODQ0LCJleHAiOjE3NDcyODA2NDR9.WVjunz-cMZ0-eJiQgHH2BxlWD4VJv5v8S4x2vw91xGk
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MjIyNTAzLCJleHAiOjE3NDczOTUzMDN9.UNQ28-HQg-h9e5zmNa6OaNeIxunxz6DOjO8v8ISddXA
 
 {
-  "name":"Kids"
+  "name":"MENS"
 }
+###
+
+POST {{subCategoryEP}}
+Content-Type:application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MjIyNTAzLCJleHAiOjE3NDczOTUzMDN9.UNQ28-HQg-h9e5zmNa6OaNeIxunxz6DOjO8v8ISddXA
+
+{
+  "name":"LEGGIGS & SKIRTS",
+  "category":"6822c02df01f27e0adae28a1"
+}
+
+###
+GET  {{categoryEP}}
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MjIyNTAzLCJleHAiOjE3NDczOTUzMDN9.UNQ28-HQg-h9e5zmNa6OaNeIxunxz6DOjO8v8ISddXA
+
+###
+GET {{ subCategoryEP}}/6822c02df01f27e0adae28a1
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MjIyNTAzLCJleHAiOjE3NDczOTUzMDN9.UNQ28-HQg-h9e5zmNa6OaNeIxunxz6DOjO8v8ISddXA
 
 
 ### create a product
 POST {{productEP}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MTA3ODQ0LCJleHAiOjE3NDcyODA2NDR9.WVjunz-cMZ0-eJiQgHH2BxlWD4VJv5v8S4x2vw91xGk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwiaWF0IjoxNzQ3MjIyNTAzLCJleHAiOjE3NDczOTUzMDN9.UNQ28-HQg-h9e5zmNa6OaNeIxunxz6DOjO8v8ISddXA
 
 {
-"name" : "niked 111",
+"name" : "tommy hilfiger tops3",
 "description" : "launched at 200 july",
 "price": 220,
   "sizes": ["S", "M", "L", "XL"],
-  "imageLists": ["https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto","https://cdn.static.amplience.net/jpl/_vid/jd_728017_vid/02b2a23e-077b-4a42-98dc-5cbb1219e46e/video/eecc0f81-e73b-4c9c-bc63-c281f044d859.mp4", "https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto", "https://i8.amplience.net/i/jpl/jd_CZ9831-010_C_0001_a?qlt=92&w=750&h=957&v=1&fmt=auto",
-  "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c3191074-4ea8-494e-bd5f-e75c0357219a/AIR+JORDAN+1+LOW+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png","https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png"],
+  "imageLists": ["https://pvh-brands.imgix.net/catalog/product/media/DM0DM19684_C1G_MO-ST-D1_014.jpg?w=713&h=950&crop=edges&fit=crop&auto=compress&auto=format",
+  "https://pvh-brands.imgix.net/catalog/product/media/DM0DM19684_YBR_MO-ST-D1_021.jpg?w=713&h=950&crop=edges&fit=crop&auto=compress&auto=format", 
+  "https://pvh-brands.imgix.net/catalog/product/media/DM0DM19684_YBR_MO-ST-F1_011.jpg?w=&h=&crop=edges&fit=crop&auto=compress&auto=format", 
+  "https://pvh-brands.imgix.net/catalog/product/media/DM0DM19684_BDS_MO-ST-B1_022.jpg?w=713&h=950&crop=edges&fit=crop&auto=compress&auto=format",
+"https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ed228574-1bdc-44a1-8a91-24f22af63ebb/AIR+JORDAN+1+MID+SE.png"],
 
 "stock":10,
-"category":"6822c01ff01f27e0adae289d",
-"thumbnail" : "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e3a103c4-e874-4a24-81d3-62b6f3fa58ca/NIKE+VOMERO+18.png",
+"category":"6824804173eb40f754b227b7",
+"subCategory":"6824819141e1dd77ca2d9868",
+"thumbnail" : "https://pvh-brands.imgix.net/catalog/product/media/DM0DM19684_C1G_MO-TP-F1_009.jpg?w=713&h=950&crop=edges&fit=crop&auto=compress&auto=format",
 "averageRating" : 0,
 "reviews":"67fcb388360b953b79588f44"
 }

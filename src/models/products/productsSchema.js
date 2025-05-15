@@ -36,7 +36,13 @@ const productsSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Categories",
+      required: true,
+    },
+    subCategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "subCategory",
       required: true,
     },
     thumbnail: {

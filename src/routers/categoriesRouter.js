@@ -1,7 +1,10 @@
 import express from "express";
 import { authenticate, isadmin } from "../middlewares/authMiddleware.js";
 import { createCategoriesValidator } from "../middlewares/joiValidation.js";
-import { createCategories } from "../controllers/categoriesControllers.js";
+import {
+  createCategories,
+  getAdminAllCategories,
+} from "../controllers/categoriesControllers.js";
 const router = express.Router();
 
 router.post(
@@ -11,6 +14,8 @@ router.post(
   createCategoriesValidator,
   createCategories
 );
+
+router.get("/", authenticate, isadmin, getAdminAllCategories);
 
 // router.post("/", (req, res) => {
 //   res.send({

@@ -47,6 +47,14 @@ export const createCategoriesValidator = (req, res, next) => {
   });
   joiValidator(createCategoriesSchema, req, res, next);
 };
+
+export const createSubCategoriesValidator = (req, res, next) => {
+  const createCategoriesSchema = Joi.object({
+    name: Joi.string().required(),
+    category: Joi.string().required(),
+  });
+  joiValidator(createCategoriesSchema, req, res, next);
+};
 // create product validator
 export const createProductValidator = (req, res, next) => {
   // Define the Joi validation schema for sizes
