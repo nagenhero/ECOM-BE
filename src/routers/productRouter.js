@@ -11,6 +11,7 @@ import {
   getPubProduct,
   updateProductController,
 } from "../controllers/productControllers.js";
+import { upload } from "../config/multerConfig.js";
 const productRouter = express.Router();
 // productRouter.post("/", (req, res) => {
 //   res.send("this is product api");
@@ -21,6 +22,7 @@ productRouter.post(
   "/",
   authenticate,
   isadmin,
+  upload.single("productFile"),
   createProductValidator,
   createProduct
 );
@@ -36,7 +38,7 @@ productRouter.get("/pub-product", getPubProduct);
 productRouter.delete("/:_id", authenticate, isadmin, deleteProductById);
 
 //put product by id
-productRouter.put(
+productRouter.patch(
   "/:_id",
   authenticate,
   isadmin,

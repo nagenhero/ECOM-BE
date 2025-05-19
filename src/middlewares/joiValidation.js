@@ -69,7 +69,7 @@ export const createProductValidator = (req, res, next) => {
     price: Joi.number().required(),
     // sizes: sizesSchema.required(),
     stock: Joi.number().required(),
-    thumbnail: Joi.string().required(),
+    // thumbnail: Joi.string().required(),
     averageRating: Joi.number().required(),
     category: Joi.string().length(24).hex().required(),
     reviews: Joi.string().length(24).hex().required(),
@@ -83,10 +83,17 @@ export const updateProductValidator = (req, res, next) => {
     description: Joi.string().required(),
     price: Joi.number().required(),
     stock: Joi.number().required(),
-    thumbnail: Joi.string().required(),
+    status: Joi.string().required(),
+    sizes: Joi.array()
+      .items(Joi.string().valid("S", "M", "L", "XL"))
+      .default([]),
+
+    imageLists: Joi.array().items(Joi.string()).default([]),
+    thumbnail: Joi.string(),
     averageRating: Joi.number().required(),
-    category: Joi.string().length(24).hex().required(),
+    subCategory: Joi.string().length(24).hex(),
+    category: Joi.string().length(24).hex(),
     reviews: Joi.string().length(24).hex().required(),
-  });
+  }).min(1);
   joiValidator(updateProductSchema, req, res, next);
 };

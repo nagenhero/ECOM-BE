@@ -2,11 +2,21 @@ import {
   deleteProduct,
   getAllProducts,
   insertProducts,
-  updateBook,
+  updateProduct,
 } from "../models/products/productsModel.js";
 //create a  product
 export const createProduct = async (req, res, next) => {
   try {
+    console.log("hey guts");
+    if (!req.file) {
+      console.log("No file uploaded");
+      return res.status(400).json({ message: "No image uploaded" });
+    }
+    console.log("hey guts2:", req.file);
+
+    console.log("req.file.filename is", req.file.filename);
+    req.body.thumbnail = "image/" + req.file.filename;
+    // req.body.thumbnail = "image/" + req.file.filename;
     const products = await insertProducts(req.body);
     products?._id //if proudct is not null or undfeined and _id exists// if null or undefined it throws error as nll or undeifned instead of crasshing app
       ? res.json({
@@ -16,12 +26,12 @@ export const createProduct = async (req, res, next) => {
         })
       : next({
           statusCode: 500,
-          message: "Books cannot be created or book_id is not found",
+          message: "productscannot be created or book_id is not found",
         });
   } catch (error) {
     next({
       statusCode: 500,
-      message: `Error creating book --->${error.message}`,
+      message: `Error creating product --->${error.message}`,
     });
   }
 };
@@ -102,7 +112,7 @@ export const deleteProductById = async (req, res, next) => {
 export const updateProductController = async (req, res, next) => {
   try {
     const _id = req.params._id;
-    const product = await updateBook(_id, req.body);
+    const product = await updateProduct(_id, req.body);
     product?._id
       ? res.json({
           status: "success",
