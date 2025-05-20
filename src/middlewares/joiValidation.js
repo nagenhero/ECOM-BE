@@ -79,16 +79,22 @@ export const createProductValidator = (req, res, next) => {
 
 export const updateProductValidator = (req, res, next) => {
   const updateProductSchema = Joi.object({
+    _id: Joi.string().length(24).hex(),
     name: Joi.string().required(),
+
     description: Joi.string().required(),
     price: Joi.number().required(),
     stock: Joi.number().required(),
     status: Joi.string().required(),
-    sizes: Joi.array()
-      .items(Joi.string().valid("S", "M", "L", "XL"))
-      .default([]),
+    sizes: Joi.any(),
+    imageLists: Joi.any(),
+    images: Joi.any(),
 
-    imageLists: Joi.array().items(Joi.string()).default([]),
+    // sizes: Joi.array()
+    //   .items(Joi.string().valid("S", "M", "L", "XL"))
+    //   .default([]),
+
+    // imageLists: Joi.array().items(Joi.string()).default([]),
     thumbnail: Joi.string(),
     averageRating: Joi.number().required(),
     subCategory: Joi.string().length(24).hex(),

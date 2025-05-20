@@ -39,7 +39,7 @@ export const createProduct = async (req, res, next) => {
 export const getAdminAllProducts = async (req, res, next) => {
   try {
     const products = await getAllProducts();
-    console.log("all priducts are:", products);
+    // console.log("all priducts are:", products);
     if (products) {
       return res.json({
         status: "success",
@@ -111,7 +111,11 @@ export const deleteProductById = async (req, res, next) => {
 //update product
 export const updateProductController = async (req, res, next) => {
   try {
+    console.log("files are:", req.files);
+
     const _id = req.params._id;
+    console.log("id is", _id);
+
     const product = await updateProduct(_id, req.body);
     product?._id
       ? res.json({

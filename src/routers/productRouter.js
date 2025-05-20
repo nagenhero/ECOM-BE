@@ -42,6 +42,7 @@ productRouter.patch(
   "/:_id",
   authenticate,
   isadmin,
+  upload.array("images", 2),
   updateProductValidator,
   updateProductController
 );
