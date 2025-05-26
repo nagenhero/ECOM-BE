@@ -78,6 +78,8 @@ export const createProductValidator = (req, res, next) => {
 };
 
 export const updateProductValidator = (req, res, next) => {
+  console.log("back", req.body);
+
   const updateProductSchema = Joi.object({
     _id: Joi.string().length(24).hex(),
     name: Joi.string().required(),
@@ -88,6 +90,7 @@ export const updateProductValidator = (req, res, next) => {
     status: Joi.string().required(),
     sizes: Joi.any(),
     imageLists: Joi.any(),
+    imgToDelete: Joi.array().items(Joi.string()).optional(),
     images: Joi.any(),
 
     // sizes: Joi.array()
@@ -101,5 +104,6 @@ export const updateProductValidator = (req, res, next) => {
     category: Joi.string().length(24).hex(),
     reviews: Joi.string().length(24).hex().required(),
   }).min(1);
+  console.log("forth", req.body);
   joiValidator(updateProductSchema, req, res, next);
 };

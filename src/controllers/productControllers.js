@@ -6,6 +6,7 @@ import {
 } from "../models/products/productsModel.js";
 import path from "path";
 import { renewJWT } from "./authController.js";
+import deleteFile from "../utils/fileUtils.js";
 //create a  product
 export const createProduct = async (req, res, next) => {
   try {
@@ -114,17 +115,43 @@ export const deleteProductById = async (req, res, next) => {
 export const updateProductController = async (req, res, next) => {
   try {
     console.log("files are:", req.files);
-    console.log("req bodty", req.body);
+    // console.log("req bodty", req.body);
 
-    // let imageList = [];
+    // // let imageList = [];
+    // req.body.imageLists = req.body.imageLists.split(",");
+    console.log("req body before:", req.body);
+
+    req.body.imageLists = req.body.imageLists
+      ? req.body.imageLists.split(",")
+      : [];
+
+    // Assuming req.body.thumbnail contains a filename to add
+    if (req.body.thumbnail) {
+      // Avoid duplicates by checking first
+      if (!req.body.imageLists.includes(req.body.thumbnail)) {
+        req.body.imageLists.push(req.body.thumbnail);
+      }
+    }
+
+    console.log("req body after update:", req.body);
+    if (
+      Array.isArray(req.body.imgToDelete) &&
+      req.body.imgToDelete.length > 0
+    ) {
+      req.body.imageLists = req.body.imageLists.filter(
+        (img) => !req.body.imgToDelete.includes(img)
+      );
+      req.body.imgToDelete.map((img) => deleteFile(img));
+    }
 
     if (Array.isArray(req.files)) {
+      // req.body.imageLists = req.body.imageLists.split(",");
       // imageList = [
       //   req.body.thumbnail,
       //   ...req.files.map((obj) => `image/${path.basename(obj.path)}`),
       // ];
       req.body.imageLists = [
-        ...req.body.imageLists.split(","),
+        ...req.body.imageLists,
         ...req.files.map((obj) => `image/${path.basename(obj.path)}`),
       ];
     }

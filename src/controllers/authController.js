@@ -22,9 +22,9 @@ import {
 
 export const register = async (req, res, next) => {
   try {
-    console.log("requested body is", req.body);
+    // console.log("requested body is", req.body);
     const { fName, lName, email, phone, thumbnail } = req.body;
-    console.log("defualt thumbani", thumbnail);
+    // console.log("defualt thumbani", thumbnail);
 
     let { password } = req.body;
     password = await encryptText(password);
@@ -53,7 +53,7 @@ export const register = async (req, res, next) => {
 
         const activationUrl = `${FrontEP}/verify-user?sessionId=${sessions._id}&t=${sessions.token}`;
 
-        console.log("action url");
+        // console.log("action url");
 
         // "
 
@@ -94,12 +94,12 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log("email is:", email);
-    console.log("passworrd is", password);
+    // console.log("email is:", email);
+    // console.log("passworrd is", password);
 
     //retrive user by email
     const userData = await getUserByEmail(email);
-    console.log("userdata details are", userData.verified);
+    // console.log("userdata details are", userData.verified);
 
     if (!userData) {
       return res.status(404).json({
@@ -108,7 +108,7 @@ export const login = async (req, res, next) => {
       });
     }
     if (userData.verified === false) {
-      console.log("this must be false");
+      // console.log("this must be false");
 
       return res.status(404).json({
         status: "error",
@@ -123,7 +123,7 @@ export const login = async (req, res, next) => {
       const tokenData = { email: userData.email };
       const { token, associate } = await jwtSign(tokenData);
       const refreshToken = await refreshJwtSign(tokenData);
-      console.log("Refreshtoken is", refreshToken);
+      // console.log("Refreshtoken is", refreshToken);
       // save the refresh Token in the userData
       const data = await updateUser(
         { email: userData.email },
@@ -179,7 +179,7 @@ export const getUserDetails = async (req, res, next) => {
 export const getAdminAllCustomers = async (req, res, next) => {
   try {
     const customer = await getAllCustomers();
-    console.log("all customers are:", customer);
+    // console.log("all customers are:", customer);
     if (customer) {
       return res.json({
         status: "success",
@@ -209,7 +209,7 @@ export const renewJWT = async (req, res, next) => {
   };
 
   const { token, email } = await jwtSign(tokenData);
-  console.log("token 1st", token);
+  // console.log("token 1st", token);
 
   return res.status(200).json({
     status: "success",

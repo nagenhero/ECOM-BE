@@ -4,12 +4,12 @@ import path from "path";
 // define the storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "assets/images");
+    cb(null, "assets/image");
   },
 
   filename: function (req, file, cb) {
-    cb(null, "image-" + Date.now() + path.extname(file.originalname));
-    // console.log("Generated filename:", filename); // Use a unique filename based on timestamp  },
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, "image-" + uniqueSuffix + path.extname(file.originalname));
   },
 });
 // console.log("Saved filename:", req.file.filename);

@@ -45,7 +45,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoriesRouter);
 
 app.use("/api/v1/subCategories", subCategoriesRouter);
-app.use("/image", express.static("assets/images"));
+app.use("/image", express.static("assets/image"));
 
 //product route
 app.use("/api/v1/products", productRouter);
