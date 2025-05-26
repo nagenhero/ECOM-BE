@@ -4,6 +4,8 @@ import {
   insertProducts,
   updateProduct,
 } from "../models/products/productsModel.js";
+import path from "path";
+import { renewJWT } from "./authController.js";
 //create a  product
 export const createProduct = async (req, res, next) => {
   try {
@@ -112,7 +114,23 @@ export const deleteProductById = async (req, res, next) => {
 export const updateProductController = async (req, res, next) => {
   try {
     console.log("files are:", req.files);
+    console.log("req bodty", req.body);
 
+    // let imageList = [];
+
+    if (Array.isArray(req.files)) {
+      // imageList = [
+      //   req.body.thumbnail,
+      //   ...req.files.map((obj) => `image/${path.basename(obj.path)}`),
+      // ];
+      req.body.imageLists = [
+        ...req.body.imageLists.split(","),
+        ...req.files.map((obj) => `image/${path.basename(obj.path)}`),
+      ];
+    }
+
+    //req.body.thumbnail = "image/" + req.file.filename;
+    // req.body.imageLists = imageList;
     const _id = req.params._id;
     console.log("id is", _id);
 
